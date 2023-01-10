@@ -3,7 +3,8 @@ const d = document,
 
 export default function darkTheme() {
   const $contentIcons = d.getElementById("content-icons"),
-    $selectors = d.querySelectorAll("[data-dark]");
+    $selectors = d.querySelectorAll("[data-dark]"),
+    $btnCloseModal = d.getElementById("btn-close-v");
 
   // console.log($selectors);
 
@@ -15,6 +16,7 @@ export default function darkTheme() {
       `<a href="#" title="Modo oscuro" class="btn"><i id="btn-darkMode"     
          class="bx bx-moon fs-3"></i></a>`
     );
+    $btnCloseModal.classList.remove("btn-close-white");
 
     ls.setItem("theme", "light");
   };
@@ -24,9 +26,11 @@ export default function darkTheme() {
     $contentIcons.removeChild($contentIcons.firstElementChild);
     $contentIcons.insertAdjacentHTML(
       "afterbegin",
-      `<a href="#" title="Modo claro" class="btn"><i id="btn-lightMode" 
+      `<a href="#" title="Modo claro" class="btn btn-lightMode"><i id="btn-lightMode" 
          class="bx bx-sun fs-3"></i></a>`
     );
+
+    $btnCloseModal.classList.add("btn-close-white");
 
     ls.setItem("theme", "dark");
   };

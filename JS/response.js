@@ -2,7 +2,7 @@ const d = document,
   $tbody = d.querySelector(".table tbody"),
   $template = d.getElementById("template-row-data").content,
   $fragment = d.createDocumentFragment(),
-  $count = d.querySelector(".badge"),
+  $count = d.querySelector(".count"),
   $notSearch = d.getElementById("not-search");
 
 export default function data(data) {
@@ -35,9 +35,15 @@ export default function data(data) {
     $template
       .getElementById("estado")
       .classList.add("text-decoration-line-through", "text-danger");
+    $template
+      .getElementById("num-doc")
+      .classList.add("text-decoration-line-through", "text-danger");
   } else {
     $template
       .getElementById("estado")
+      .classList.remove("text-decoration-line-through", "text-danger");
+    $template
+      .getElementById("num-doc")
       .classList.remove("text-decoration-line-through", "text-danger");
   }
 
@@ -54,8 +60,6 @@ export default function data(data) {
 
   let downCertification = `<a rel='link' title='Descargar certificado' href="${url}"><i class='bx bxs-file-doc fs-3 text-danger text-opacity-75'></i></a>`;
 
-  // console.log(downCertification);
-
   $template.getElementById("certificado").innerHTML = downCertification;
 
   let $clone = d.importNode($template, true);
@@ -70,4 +74,9 @@ export default function data(data) {
     .length;
 
   $count.textContent = tbodyLength;
+
+  d.querySelector("#btn-clear-all").classList.replace(
+    "loader-hidden",
+    "loader-visible"
+  );
 }

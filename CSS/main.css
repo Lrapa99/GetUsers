@@ -3,6 +3,19 @@
   --fondo-nav-color-darkMode: #15151d;
   --fondo-nav-color-LightMode: #f4f6f7;
   --letra-color-darkMode: #1abc9c;
+  --font-poppins: "Poppins", sans-serif;
+}
+
+body {
+  font-family: var(--font-poppins);
+  min-width: 320px;
+  max-width: 1920px;
+  /* font-size: 0.9rem; */
+}
+
+table thead,
+tbody {
+  font-size: 0.9rem;
 }
 
 /* Loader CSS */
@@ -150,10 +163,74 @@ tbody tr:hover {
   font-size: 3.5rem;
 }
 
-.dark-mode #btn-lightMode:hover {
+.dark-mode #btn-lightMode:hover,
+.dark-mode .btn-lightMode:hover {
   color: #f4d03f;
 }
+.dark-mode tbody .table-group-divider {
+  color: #dc3545;
+}
+
+#btn-version {
+  font-size: 0.8rem;
+  color: black;
+}
+
+.dark-mode #btn-version {
+  color: white;
+}
+
+.dark-mode .modal-content {
+  background-color: var(--fondo-nav-color-darkMode);
+  color: white;
+}
+
+.dark-mode .modal-content i {
+  color: white;
+}
+
 /* 
 .dark-mode #error-servidor p b {
   color: var(--fondo-color-darkMode);
 } */
+
+/* desactivar scroll */
+
+.stop-scrolling {
+  height: 100%;
+
+  overflow: hidden;
+}
+
+/* Estilos de Bootstrap */
+
+.dark-mode .table-group-divider {
+  border-top: 2px solid #dc3545;
+}
+
+/* X-Small devices (portrait phones, less than 576px) */
+/* No media query for `xs` since this is the default in Bootstrap */
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+}
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {
+  table thead,
+  tbody {
+    font-size: 1rem;
+  }
+}

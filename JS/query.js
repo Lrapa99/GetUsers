@@ -1,80 +1,71 @@
+import asyncPromises from "./asyncPromises.js";
 import getData from "./getFetch.js";
+import inactiveScroll from "./inactiveScroll.js";
 
 const d = document,
   $inputDocs = d.getElementById("allDocuments"),
-  $errorServidor = d.getElementById("error-servidor"),
-  $captionDataTable = d.getElementById("count-data-table");
-
-function errorServidor() {
-  // console.log($captionDataTable);
-  $errorServidor.classList.replace("loader-hidden", "loader-visible");
-  const showError = (mutations) => {
-    mutations.forEach((mutation) => {
-      // console.log(mutation);
-      $errorServidor.classList.replace("loader-visible", "loader-hidden");
-    });
-  };
-
-  const config = { attributes: true, childList: true, characterData: true };
-
-  const observer = new MutationObserver(showError);
-
-  observer.observe($captionDataTable, config);
-}
+  $loader = d.getElementById("loader"),
+  $showInfoUsers = d.getElementById("show-info-users");
 
 export default function query(url, typesDoc) {
   d.addEventListener("click", (e) => {
     if (e.target.matches("#btn-buscar")) {
       let inputDocsValues = $inputDocs.value || null;
       if (inputDocsValues) {
-        // $loader.classList.replace("loader-hidden", "loader-visible");
         e.preventDefault();
 
-        const allDoc = new Set(inputDocsValues.split(" "));
+        const allDoc = new Set(inputDocsValues.split(" ")); //!obtenemos valores unicos
 
-        const arrSinDuplicado = Array.from(allDoc);
+        const arrSinDuplicado = Array.from(allDoc); //!convertimos en un array
 
-        if (arrSinDuplicado.length <= 999) {
-          for (let doc of arrSinDuplicado) {
-            getData(url, typesDoc, doc, 1);
-          }
+        if (arrSinDuplicado.length > 3000) {
+          arrSinDuplicado.splice(3000, arrSinDuplicado.length);
         }
 
-        if (arrSinDuplicado.length >= 1999) {
-          const newArrP1 = arrSinDuplicado.splice(
-            0,
-            arrSinDuplicado.length / 2
-          );
-          const newArrP2 = arrSinDuplicado.splice(0, arrSinDuplicado.length);
+        // console.log(arrSinDuplicado.length);
 
-          console.log(newArrP1, newArrP2);
-
-          const getUser = async () => {
-            console.log("promises 1");
-            const promises1 = await Promise.all(
-              await newArrP1.forEach(async (el) => {
-                const result = await getData(url, typesDoc, el, 1);
-                // return result;
-                console.log(result);
-              })
-            );
-            console.log("promises 2");
-            const promises2 = await Promise.all(
-              await newArrP2.forEach(async (el) => {
-                const result = await getData(url, typesDoc, el, 1);
-                // return result;
-                console.log(result);
-              })
-            );
-          };
-
-          getUser();
+        if (arrSinDuplicado.length > 50) {
+          //!mostras alerta👇
+          $showInfoUsers.innerHTML = `
+                  <div
+          class="alert alert-warning animate__animated animate__fadeInDown alert-dismissible fade show"
+          role="alert"
+        >
+          <span id="msg-info-users">¡<strong>Hola</strong>, Éste proceso   
+puede tardar unos minutos,<strong> dependiendo de su velocidad de internet y   
+de la cantidad de datos a consultar</strong>, por favor sea paciente...!</span>
+          <button
+          id="btn-close-alert"
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button>
+        </div>`;
+          //!mostrar alerta☝️
         }
-
         setTimeout(() => {
-          console.log("error servidor");
-          errorServidor();
-        }, 2000);
+          d.querySelector(".alert").classList.remove("animate__fadeInDown");
+        }, 1000);
+
+        if (arrSinDuplicado.length <= 1000) {
+          (async () => {
+            $loader.classList.replace("loader-hidden", "loader-visible");
+            const promise = await Promise.all(
+              await arrSinDuplicado.map(async (el) => {
+                await getData(url, typesDoc, el);
+              })
+            );
+            // console.log("promise finished");
+            $loader.classList.replace("loader-visible", "loader-hidden");
+            inactiveScroll(0);
+          })();
+        }
+
+        if (arrSinDuplicado.length > 1000 && arrSinDuplicado.length <= 3000) {
+          //! async Promises
+          asyncPromises(arrSinDuplicado, { url, typesDoc });
+        }
       }
     }
   });

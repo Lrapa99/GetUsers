@@ -1,7 +1,9 @@
+import clearData from "./JS/btnClearData.js";
 import networkStatus from "./JS/deteccion_red.js";
+import inactiveScroll from "./JS/inactiveScroll.js";
 import initialLoading from "./JS/initialLoading.js";
-import loader from "./JS/loader.js";
 import query from "./JS/query.js";
+import showModalChangeVersions from "./JS/showModalChangeVersions.js";
 import darkTheme from "./JS/tema_oscuro.js";
 
 const d = document,
@@ -23,11 +25,10 @@ w.addEventListener("load", (e) => {
 
 d.addEventListener("DOMContentLoaded", (e) => {
   query(url, typesDoc);
+  showModalChangeVersions();
+  inactiveScroll(1);
+  clearData();
 });
-
-setInterval(() => {
-  loader();
-}, 5000);
 
 darkTheme();
 networkStatus();
