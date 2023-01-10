@@ -79,4 +79,8 @@ export default function data(data) {
     "loader-hidden",
     "loader-visible"
   );
+  d.querySelector("#btnExportar").classList.replace(
+    "loader-hidden",
+    "loader-visible"
+  );
 }

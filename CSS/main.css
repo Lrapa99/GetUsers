@@ -202,6 +202,37 @@ tbody tr:hover {
   overflow: hidden;
 }
 
+/* Btn ScrollTop */
+
+html {
+  scroll-behavior: smooth;
+}
+.btn-scrolltop {
+  position: fixed;
+  bottom: 2rem;
+  right: 1rem;
+  padding: 0.5rem 0.6rem;
+  background: #dc3545;
+  border: hidden;
+  color: white;
+  border-radius: 100%;
+  cursor: pointer;
+  transform: translateY(100px);
+  transition: all 0.3s ease-out;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+}
+
+.btn-scrolltop-on {
+  transform: translateY(0);
+}
+
+.btn-scrolltop:hover {
+  background: #e35d6a;
+}
+
 /* Estilos de Bootstrap */
 
 .dark-mode .table-group-divider {

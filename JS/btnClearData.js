@@ -19,6 +19,10 @@ export default function clearData() {
             "loader-visible",
             "loader-hidden"
           );
+          d.querySelector("#btnExportar").classList.replace(
+            "loader-visible",
+            "loader-hidden"
+          );
         }
       }
     }

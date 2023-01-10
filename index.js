@@ -1,5 +1,7 @@
 import clearData from "./JS/btnClearData.js";
+import btnScrollTop from "./JS/btnScrollTop.js";
 import networkStatus from "./JS/deteccion_red.js";
+import exportTableExcel from "./JS/exportTableExcel.js";
 import inactiveScroll from "./JS/inactiveScroll.js";
 import initialLoading from "./JS/initialLoading.js";
 import query from "./JS/query.js";
@@ -28,6 +30,8 @@ d.addEventListener("DOMContentLoaded", (e) => {
   showModalChangeVersions();
   inactiveScroll(1);
   clearData();
+  btnScrollTop();
+  exportTableExcel();
 });
 
 darkTheme();

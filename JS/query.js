@@ -48,6 +48,7 @@ de la cantidad de datos a consultar</strong>, por favor sea paciente...!</span>
           d.querySelector(".alert").classList.remove("animate__fadeInDown");
         }, 1000);
 
+        $inputDocs.value = "";
         if (arrSinDuplicado.length <= 1000) {
           (async () => {
             $loader.classList.replace("loader-hidden", "loader-visible");
