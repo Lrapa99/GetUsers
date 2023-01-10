@@ -3,12 +3,14 @@
   --fondo-nav-color-darkMode: #15151d;
   --fondo-nav-color-LightMode: #f4f6f7;
   --letra-color-darkMode: #1abc9c;
+  --form-ok-color: #4caf50;
+  --form-error-color: #f44336;
   --font-poppins: "Poppins", sans-serif;
 }
 
 body {
   font-family: var(--font-poppins);
-  min-width: 320px;
+  min-width: 330px;
   max-width: 1920px;
   /* font-size: 0.9rem; */
 }
@@ -239,6 +241,13 @@ html {
   border-top: 2px solid #dc3545;
 }
 
+.navbar-brand {
+  font-size: 28px;
+}
+.navbar-brand .bx {
+  font-size: 3rem;
+}
+
 /* X-Small devices (portrait phones, less than 576px) */
 /* No media query for `xs` since this is the default in Bootstrap */
 
@@ -252,6 +261,12 @@ html {
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
+  .navbar-brand {
+    font-size: 23px;
+  }
+  .navbar-brand .bx {
+    font-size: 2rem;
+  }
 }
 
 /* X-Large devices (large desktops, 1200px and up) */
